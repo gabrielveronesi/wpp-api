@@ -18,6 +18,7 @@ function delay(t, v) {
   });
 }
 
+//#region limpar
 app.use(express.json());
 app.use(express.urlencoded({
 extended: true
@@ -250,28 +251,63 @@ app.post('/zdg-media', [
     });
   }
 });
+//#endregion limpar
 
-//envio automatico
+//Envio automatico
 client.on('message', async msg => {
 
-  const nomeContato = msg._data.notifyName;
+  //Váriaveis globais
+  var nomeContato = msg._data.notifyName;
+  var chat        = await msg.getChat();
 
   if (msg.type.toLowerCase() == "e2e_notification") return null;
   
   if (msg.body == "") return null;
 
   if (msg.body === '!ping') {
-    msg.reply("pong" + nomeContato)
+    msg.reply("pong")
   } 
-});
 
+  
+
+  if (msg.body === '!entrei') {
     
-server.listen(port, function() {
-        console.log('Aplicação rodando na porta *: ' + port + ' . Acesse no link: http://localhost:' + port);
+    if (chat.isGroup) {
+        msg.reply(`Olá *${nomeContato}*, seja bem vindo! 
+
+Grupo destinado a avisos e discussões de melhorias do Residencial Allure.
+
+Aqui é terminantemente proíbido:
+❌ Assuntos políticos;
+❌ Assuntos religiosos;
+❌ Assuntos não relacionados ao condomínio.
+
+Moradores no grupo: *${chat.participants.length}*`);
+    } else {
+        msg.reply('Esse comando só pode ser usado em grupo!');
+    }
+  }
+
 });
 
+//Mensagem para usuarios que vão entrar no grupo
 client.on('group_join', (notification) => {
-  // User has joined or been added to the group.
-  console.log('join', notification);
-  notification.reply('Olá, seja bem-vindo! \r\n Aqui é a tropa do condô!');
+   
+  console.log('notificacao', notification);
+
+  client.on('message', async msg => {
+
+    //Váriaveis globais
+    var nomeContato = msg._data.notifyName;
+    var chat        = await msg.getChat();
+
+    console.log('tipo msg:'+ nomeContato )
+    console.log('chat:'+ chat.participants.length )
+  });
+});
+
+
+//Mensagem no console quando o projeto terminar de rodar e estiver pronto
+server.listen(port, function() {
+  console.log('Aplicação rodando na porta *: ' + port + ' . Acesse no link: http://localhost:' + port);
 });
