@@ -260,12 +260,8 @@ client.on('message', async msg => {
   
   if (msg.body == "") return null;
 
-  // if (msg.body !== null || msg.body === "0" || msg.type === 'ptt') {
-  //   msg.reply('Olá, ' + nomeContato + ', seja *bem-vindo!*');
-	// }
-
-  if (msg.body !== null && msg.body === "!ping") {
-    msg.reply("pong")
+  if (msg.body === '!ping') {
+    msg.reply("pong" + nomeContato)
   } 
 });
 
