@@ -5,7 +5,7 @@ const client = new Client({
     // proxyAuthentication: { username: 'username', password: 'password' },
     puppeteer: { 
         // args: ['--proxy-server=proxy-server-that-requires-authentication.example.com'],
-        headless: true
+        headless: false
     }
 });
 
@@ -35,25 +35,6 @@ client.on('ready', () => {
 
 client.on('message', async msg => {
     console.log('MESSAGE RECEIVED', msg);
-
-    const fs = require('fs');
-
-
-    const nomeArquivo = 'arquivo.txt';
-
-    fs.readFile(nomeArquivo, 'utf8', (err, data) => {
-        if (err) {
-            console.error(`Erro ao ler o arquivo: ${err}`);
-            return;
-        }
-        client.sendMessage(msg.from, data);
-        console.log(data);
-    });
-
-    if (msg.body === '!gabriel') {
-        // Send a new message as a reply to the current one
-        client.sendMessage(msg.from, 'veronesi');
-    }
 
     if (msg.body === '!ping reply') {
         // Send a new message as a reply to the current one
