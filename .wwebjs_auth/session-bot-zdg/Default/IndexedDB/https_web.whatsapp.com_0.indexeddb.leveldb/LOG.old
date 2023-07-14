@@ -1,0 +1,17 @@
+2023/07/13-23:22:13.675 49bc Reusing MANIFEST C:\Users\veron\Desktop\bot-zdg-main\bot-zdg-main\.wwebjs_auth\session-bot-zdg\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2023/07/13-23:22:13.675 49bc Recovering log #290
+2023/07/13-23:22:13.877 49bc Reusing old log C:\Users\veron\Desktop\bot-zdg-main\bot-zdg-main\.wwebjs_auth\session-bot-zdg\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000290.log 
+2023/07/13-23:22:30.490 5358 Level-0 table #297: started
+2023/07/13-23:22:30.517 5358 Level-0 table #297: 1080421 bytes OK
+2023/07/13-23:22:30.520 5358 Delete type=0 #290
+2023/07/13-23:22:30.744 5358 Compacting 1@1 + 3@2 files
+2023/07/13-23:22:30.825 5358 Generated table #298@1: 25119 keys, 2196196 bytes
+2023/07/13-23:22:30.902 5358 Generated table #299@1: 22233 keys, 2202776 bytes
+2023/07/13-23:22:31.018 5358 Generated table #300@1: 81078 keys, 2225052 bytes
+2023/07/13-23:22:31.032 5358 Generated table #301@1: 9830 keys, 223301 bytes
+2023/07/13-23:22:31.032 5358 Compacted 1@1 + 3@2 files => 6847325 bytes
+2023/07/13-23:22:31.034 5358 compacted to: files[ 0 0 4 0 0 0 0 ]
+2023/07/13-23:22:31.034 5358 Delete type=2 #292
+2023/07/13-23:22:31.034 5358 Delete type=2 #293
+2023/07/13-23:22:31.034 5358 Delete type=2 #294
+2023/07/13-23:22:31.034 5358 Delete type=2 #297
