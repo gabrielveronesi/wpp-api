@@ -270,23 +270,23 @@ client.on('message', async msg => {
 
   
 
-  if (msg.body === '!entrei') {
+//   if (msg.body === '!entrei') {
     
-    if (chat.isGroup) {
-        msg.reply(`Olá *${nomeContato}*, seja bem vindo! 
+//     if (chat.isGroup) {
+//         msg.reply(`*${nomeContato}*, seja bem vindo! 
 
-Grupo destinado a avisos e discussões de melhorias do Residencial Allure.
+// Grupo destinado a avisos e discussões de melhorias do Residencial Allure.
 
-Aqui é terminantemente proíbido:
-❌ Assuntos políticos;
-❌ Assuntos religiosos;
-❌ Assuntos não relacionados ao condomínio.
+// Aqui é terminantemente proíbido:
+// ❌ Assuntos políticos;
+// ❌ Assuntos religiosos;
+// ❌ Assuntos não relacionados ao condomínio.
 
-Moradores no grupo: *${chat.participants.length}*`);
-    } else {
-        msg.reply('Esse comando só pode ser usado em grupo!');
-    }
-  }
+// Moradores no grupo: *${chat.participants.length}*`);
+//     } else {
+//         msg.reply('Esse comando só pode ser usado em grupo!');
+//     }
+//   }
 
 });
 
@@ -294,16 +294,13 @@ Moradores no grupo: *${chat.participants.length}*`);
 client.on('group_join', (notification) => {
    
   console.log('notificacao', notification);
+  notification.reply(`*Olá, seja bem vindo!*
 
-  client.on('message', async msg => {
-
-    //Váriaveis globais
-    var nomeContato = msg._data.notifyName;
-    var chat        = await msg.getChat();
-
-    console.log('tipo msg:'+ nomeContato )
-    console.log('chat:'+ chat.participants.length )
-  });
+Grupo destinado a avisos e discussões de melhorias do Residencial Allure.
+Aqui é terminantemente proíbido:
+❌ Assuntos políticos;
+❌ Assuntos religiosos;
+❌ Assuntos não relacionados ao condomínio.`)
 });
 
 
