@@ -270,23 +270,27 @@ client.on('message', async msg => {
 
   
 
-//   if (msg.body === '!entrei') {
+  if (msg.body === '!regras') {
     
-//     if (chat.isGroup) {
-//         msg.reply(`*${nomeContato}*, seja bem vindo! 
+    if (chat.isGroup) {
+        msg.reply(`Olá *${nomeContato}*
 
-// Grupo destinado a avisos e discussões de melhorias do Residencial Allure.
-
-// Aqui é terminantemente proíbido:
-// ❌ Assuntos políticos;
-// ❌ Assuntos religiosos;
-// ❌ Assuntos não relacionados ao condomínio.
-
-// Moradores no grupo: *${chat.participants.length}*`);
-//     } else {
-//         msg.reply('Esse comando só pode ser usado em grupo!');
-//     }
-//   }
+Quando se vive em condomínio, é essencial aplicarmos a política da boa vizinhança. Para isso, algumas vezes se faz necessário ceder e sempre respeitar nossos vizinhos e os direitos de cada um.
+        
+Esse grupo tem o intuito de melhorar o convívio entre os moradores, ajudar e ser ajudado, conhecer os moradores, sugerir melhorias ao condomínio e denunciar abusos que eventualmente possam ocorrer.
+        
+Aqui é terminantemente proibido:
+        
+❌ Assuntos políticos;
+❌ Assuntos religiosos;
+❌ Insultos e/ou falta de respeito;
+❌ Assuntos, vídeos e imagens não relacionados ao condomínio.
+        
+No caso de infração a pessoa será imediatamente banida no grupo.`);
+    } else {
+        msg.reply('Esse comando só pode ser usado em grupo!');
+    }
+  }
 
 });
 
@@ -294,13 +298,11 @@ client.on('message', async msg => {
 client.on('group_join', (notification) => {
    
   console.log('notificacao', notification);
-  notification.reply(`*Olá, seja bem vindo!*
+  notification.reply(`🏠 Olá, *seja bem vindo!* 🏠
 
 Grupo destinado a avisos e discussões de melhorias do Residencial Allure.
-Aqui é terminantemente proíbido:
-❌ Assuntos políticos;
-❌ Assuntos religiosos;
-❌ Assuntos não relacionados ao condomínio.`)
+  
+Digite *!regras* e fique por dentro das premissas desse grupo.`)
 });
 
 
