@@ -275,11 +275,11 @@ client.on('message', async msg => {
     if (chat.isGroup) {
         msg.reply(`Olá *${nomeContato}*
 
-Quando se vive em condomínio, é essencial aplicarmos a política da boa vizinhança. Para isso, algumas vezes se faz necessário ceder e sempre respeitar nossos vizinhos e os direitos de cada um.
+Quando se vive em condomínio, é essencial aplicarmos a política da boa vizinhança. Para isso, algumas vezes se faz necessário ceder e *sempre* respeitar nossos vizinhos e os direitos de cada um.
         
 Esse grupo tem o intuito de melhorar o convívio entre os moradores, ajudar e ser ajudado, conhecer os moradores, sugerir melhorias ao condomínio e denunciar abusos que eventualmente possam ocorrer.
         
-Aqui é terminantemente proibido:
+*Aqui é terminantemente proibido:*
         
 ❌ Assuntos políticos;
 ❌ Assuntos religiosos;
