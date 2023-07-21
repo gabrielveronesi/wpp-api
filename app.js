@@ -11,6 +11,7 @@ const port = process.env.PORT || 8000;
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
+const cors = require('cors'); // Importe a biblioteca cors
 
 function delay(t, v) {
   return new Promise(function(resolve) { 
@@ -19,6 +20,9 @@ function delay(t, v) {
 }
 
 //#region limpar
+
+// Configurar a política de CORS para permitir acesso de qualquer origem (*)
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({
 extended: true

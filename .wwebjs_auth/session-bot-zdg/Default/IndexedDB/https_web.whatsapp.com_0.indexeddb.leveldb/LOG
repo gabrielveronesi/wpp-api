@@ -1,12 +1,3 @@
-2023/07/14-19:27:12.620 3158 Reusing MANIFEST C:\Users\veron\Documents\Repositorios\wpp-api\.wwebjs_auth\session-bot-zdg\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2023/07/14-19:27:12.621 3158 Recovering log #362
-2023/07/14-19:27:12.875 3158 Reusing old log C:\Users\veron\Documents\Repositorios\wpp-api\.wwebjs_auth\session-bot-zdg\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000362.log 
-2023/07/14-19:27:36.372 2a24 Level-0 table #367: started
-2023/07/14-19:27:36.404 2a24 Level-0 table #367: 1249596 bytes OK
-2023/07/14-19:27:36.408 2a24 Delete type=0 #362
-2023/07/14-19:27:38.707 3158 Compacting 1@1 + 1@2 files
-2023/07/14-19:27:38.812 3158 Generated table #368@1: 44600 keys, 1598181 bytes
-2023/07/14-19:27:38.812 3158 Compacted 1@1 + 1@2 files => 1598181 bytes
-2023/07/14-19:27:38.815 3158 compacted to: files[ 0 0 1 0 0 0 0 ]
-2023/07/14-19:27:38.816 3158 Delete type=2 #364
-2023/07/14-19:27:38.816 3158 Delete type=2 #367
+2023/07/21-15:21:25.899 5ba0 Reusing MANIFEST C:\Users\veron\Documents\Repositorios\wpp-api\.wwebjs_auth\session-bot-zdg\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2023/07/21-15:21:25.906 5ba0 Recovering log #366
+2023/07/21-15:21:25.926 5ba0 Reusing old log C:\Users\veron\Documents\Repositorios\wpp-api\.wwebjs_auth\session-bot-zdg\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000366.log 
