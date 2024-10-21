@@ -14,8 +14,8 @@ const io = socketIO(server);
 const cors = require('cors'); // Importe a biblioteca cors
 
 function delay(t, v) {
-  return new Promise(function(resolve) { 
-      setTimeout(resolve.bind(null, v), t)
+  return new Promise(function (resolve) {
+    setTimeout(resolve.bind(null, v), t)
   });
 }
 
@@ -25,10 +25,10 @@ function delay(t, v) {
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({
-extended: true
+  extended: true
 }));
 app.use(fileUpload({
-debug: true
+  debug: true
 }));
 app.use("/", express.static(__dirname + "/"))
 
@@ -40,7 +40,8 @@ app.get('/', (req, res) => {
 
 const client = new Client({
   authStrategy: new LocalAuth({ clientId: 'bot-zdg' }),
-  puppeteer: { headless: true,
+  puppeteer: {
+    headless: true,
     args: [
       '--no-sandbox',
       '--disable-setuid-sandbox',
@@ -50,50 +51,51 @@ const client = new Client({
       '--no-zygote',
       '--single-process', // <- this one doesn't works in Windows
       '--disable-gpu'
-    ] }
+    ]
+  }
 });
 
 client.initialize();
 
-io.on('connection', function(socket) {
+io.on('connection', function (socket) {
   socket.emit('message', '© BOT-ZDG - Iniciado');
   socket.emit('qr', './icon.svg');
 
-client.on('qr', (qr) => {
+  client.on('qr', (qr) => {
     console.log('QR RECEIVED', qr);
     qrcode.toDataURL(qr, (err, url) => {
       socket.emit('qr', url);
       socket.emit('message', '© BOT-ZDG QRCode recebido, aponte a câmera  seu celular!');
     });
-});
+  });
 
-client.on('ready', () => {
+  client.on('ready', () => {
     socket.emit('ready', '© BOT-ZDG Dispositivo pronto!');
     socket.emit('message', '© BOT-ZDG Dispositivo pronto!');
-    socket.emit('qr', './check.svg')	
+    socket.emit('qr', './check.svg')
     console.log('© BOT-ZDG Dispositivo pronto');
-});
+  });
 
-client.on('authenticated', () => {
+  client.on('authenticated', () => {
     socket.emit('authenticated', '© BOT-ZDG Autenticado!');
     socket.emit('message', '© BOT-ZDG Autenticado!');
     console.log('© BOT-ZDG Autenticado');
-});
+  });
 
-client.on('auth_failure', function() {
+  client.on('auth_failure', function () {
     socket.emit('message', '© BOT-ZDG Falha na autenticação, reiniciando...');
     console.error('© BOT-ZDG Falha na autenticação');
-});
+  });
 
-client.on('change_state', state => {
-  console.log('© BOT-ZDG Status de conexão: ', state );
-});
+  client.on('change_state', state => {
+    console.log('© BOT-ZDG Status de conexão: ', state);
+  });
 
-client.on('disconnected', (reason) => {
-  socket.emit('message', '© BOT-ZDG Cliente desconectado!');
-  console.log('© BOT-ZDG Cliente desconectado', reason);
-  client.initialize();
-});
+  client.on('disconnected', (reason) => {
+    socket.emit('message', '© BOT-ZDG Cliente desconectado!');
+    console.log('© BOT-ZDG Cliente desconectado', reason);
+    client.initialize();
+  });
 });
 
 // Send message
@@ -123,49 +125,49 @@ app.post('/zdg-message', [
   if (numberDDI !== "55") {
     const numberZDG = number + "@c.us";
     client.sendMessage(numberZDG, message).then(response => {
-    res.status(200).json({
-      status: true,
-      message: 'BOT-ZDG Mensagem enviada',
-      response: response
-    });
+      res.status(200).json({
+        status: true,
+        message: 'BOT-ZDG Mensagem enviada',
+        response: response
+      });
     }).catch(err => {
-    res.status(500).json({
-      status: false,
-      message: 'BOT-ZDG Mensagem não enviada',
-      response: err.text
-    });
+      res.status(500).json({
+        status: false,
+        message: 'BOT-ZDG Mensagem não enviada',
+        response: err.text
+      });
     });
   }
   else if (numberDDI === "55" && parseInt(numberDDD) <= 30) {
     const numberZDG = "55" + numberDDD + "9" + numberUser + "@c.us";
     client.sendMessage(numberZDG, message).then(response => {
-    res.status(200).json({
-      status: true,
-      message: 'BOT-ZDG Mensagem enviada',
-      response: response
-    });
+      res.status(200).json({
+        status: true,
+        message: 'BOT-ZDG Mensagem enviada',
+        response: response
+      });
     }).catch(err => {
-    res.status(500).json({
-      status: false,
-      message: 'BOT-ZDG Mensagem não enviada',
-      response: err.text
-    });
+      res.status(500).json({
+        status: false,
+        message: 'BOT-ZDG Mensagem não enviada',
+        response: err.text
+      });
     });
   }
   else if (numberDDI === "55" && parseInt(numberDDD) > 30) {
     const numberZDG = "55" + numberDDD + numberUser + "@c.us";
     client.sendMessage(numberZDG, message).then(response => {
-    res.status(200).json({
-      status: true,
-      message: 'BOT-ZDG Mensagem enviada',
-      response: response
-    });
+      res.status(200).json({
+        status: true,
+        message: 'BOT-ZDG Mensagem enviada',
+        response: response
+      });
     }).catch(err => {
-    res.status(500).json({
-      status: false,
-      message: 'BOT-ZDG Mensagem não enviada',
-      response: err.text
-    });
+      res.status(500).json({
+        status: false,
+        message: 'BOT-ZDG Mensagem não enviada',
+        response: err.text
+      });
     });
   }
 });
@@ -208,50 +210,50 @@ app.post('/zdg-media', [
 
   if (numberDDI !== "55") {
     const numberZDG = number + "@c.us";
-    client.sendMessage(numberZDG, media, {caption: caption}).then(response => {
-    res.status(200).json({
-      status: true,
-      message: 'BOT-ZDG Imagem enviada',
-      response: response
-    });
+    client.sendMessage(numberZDG, media, { caption: caption }).then(response => {
+      res.status(200).json({
+        status: true,
+        message: 'BOT-ZDG Imagem enviada',
+        response: response
+      });
     }).catch(err => {
-    res.status(500).json({
-      status: false,
-      message: 'BOT-ZDG Imagem não enviada',
-      response: err.text
-    });
+      res.status(500).json({
+        status: false,
+        message: 'BOT-ZDG Imagem não enviada',
+        response: err.text
+      });
     });
   }
   else if (numberDDI === "55" && parseInt(numberDDD) <= 30) {
     const numberZDG = "55" + numberDDD + "9" + numberUser + "@c.us";
-    client.sendMessage(numberZDG, media, {caption: caption}).then(response => {
-    res.status(200).json({
-      status: true,
-      message: 'BOT-ZDG Imagem enviada',
-      response: response
-    });
+    client.sendMessage(numberZDG, media, { caption: caption }).then(response => {
+      res.status(200).json({
+        status: true,
+        message: 'BOT-ZDG Imagem enviada',
+        response: response
+      });
     }).catch(err => {
-    res.status(500).json({
-      status: false,
-      message: 'BOT-ZDG Imagem não enviada',
-      response: err.text
-    });
+      res.status(500).json({
+        status: false,
+        message: 'BOT-ZDG Imagem não enviada',
+        response: err.text
+      });
     });
   }
   else if (numberDDI === "55" && parseInt(numberDDD) > 30) {
     const numberZDG = "55" + numberDDD + numberUser + "@c.us";
-    client.sendMessage(numberZDG, media, {caption: caption}).then(response => {
-    res.status(200).json({
-      status: true,
-      message: 'BOT-ZDG Imagem enviada',
-      response: response
-    });
+    client.sendMessage(numberZDG, media, { caption: caption }).then(response => {
+      res.status(200).json({
+        status: true,
+        message: 'BOT-ZDG Imagem enviada',
+        response: response
+      });
     }).catch(err => {
-    res.status(500).json({
-      status: false,
-      message: 'BOT-ZDG Imagem não enviada',
-      response: err.text
-    });
+      res.status(500).json({
+        status: false,
+        message: 'BOT-ZDG Imagem não enviada',
+        response: err.text
+      });
     });
   }
 });
@@ -262,22 +264,41 @@ client.on('message', async msg => {
 
   //Váriaveis globais
   var nomeContato = msg._data.notifyName;
-  var chat        = await msg.getChat();
+  var chat = await msg.getChat();
 
   if (msg.type.toLowerCase() == "e2e_notification") return null;
-  
+
   if (msg.body == "") return null;
 
   if (msg.body === '!ping') {
     msg.reply("pong")
-  } 
+  }
 
-  
+  if (msg.body === '!pdf') {
+    const indic = MessageMedia.fromFilePath('./indice.pdf');
+    msg.reply(msg.from, indic, { caption: 'Comunidade ZDG 2.0' });
+  }
+
+  if (msg.body === '!img') {
+    msg.reply("*CAMBUHY A MELHOR EMPRESA PARA SE TRABALHAR NESSA PORRA* ⏱️");
+    const foto = MessageMedia.fromFilePath('./foto.jpeg');
+    client.sendMessage(msg.from, foto)
+    delay(3000).then(async function () {
+      try {
+        const media = MessageMedia.fromFilePath('./comunidade.ogg');
+        client.sendMessage(msg.from, media, { sendAudioAsVoice: true })
+        //msg.reply(media, {sendAudioAsVoice: true});
+      } catch (e) {
+        console.log('audio off')
+      }
+    });
+  }
+
 
   if (msg.body === '!regras') {
-    
+
     if (chat.isGroup) {
-        msg.reply(`Olá *${nomeContato}*
+      msg.reply(`Olá *${nomeContato}*
 
 Quando se vive em condomínio, é essencial aplicarmos a política da boa vizinhança. Para isso, algumas vezes se faz necessário ceder e *sempre* respeitar nossos vizinhos e os direitos de cada um.
         
@@ -292,7 +313,7 @@ Esse grupo tem o intuito de melhorar o convívio entre os moradores, ajudar e se
         
 No caso de infração a pessoa será imediatamente banida no grupo.`);
     } else {
-        msg.reply('Esse comando só pode ser usado em grupo!');
+      msg.reply('Esse comando só pode ser usado em grupo!');
     }
   }
 
@@ -300,7 +321,7 @@ No caso de infração a pessoa será imediatamente banida no grupo.`);
 
 //Mensagem para usuarios que vão entrar no grupo
 client.on('group_join', (notification) => {
-   
+
   console.log('notificacao', notification);
   notification.reply(`🏠 Olá, *seja bem vindo!* 🏠
 
@@ -311,6 +332,6 @@ Digite *!regras* e fique por dentro das premissas desse grupo.`)
 
 
 //Mensagem no console quando o projeto terminar de rodar e estiver pronto
-server.listen(port, function() {
+server.listen(port, function () {
   console.log('Aplicação rodando na porta *: ' + port + ' . Acesse no link: http://localhost:' + port);
 });
