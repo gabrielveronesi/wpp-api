@@ -1,3 +1,2 @@
-2024/10/21-19:10:50.042 735c Reusing MANIFEST C:\Users\veron\Repositorios\wpp-api\.wwebjs_auth\session-bot-zdg\Default\Service Worker\Database/MANIFEST-000001
-2024/10/21-19:10:50.042 735c Recovering log #3
-2024/10/21-19:10:50.043 735c Reusing old log C:\Users\veron\Repositorios\wpp-api\.wwebjs_auth\session-bot-zdg\Default\Service Worker\Database/000003.log 
+2024/10/21-19:35:33.551 696c Creating DB C:\Users\veron\Repositorios\wpp-api\.wwebjs_auth\session-bot-zdg\Default\Service Worker\Database since it was missing.
+2024/10/21-19:35:33.568 696c Reusing MANIFEST C:\Users\veron\Repositorios\wpp-api\.wwebjs_auth\session-bot-zdg\Default\Service Worker\Database/MANIFEST-000001
