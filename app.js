@@ -259,7 +259,26 @@ app.post('/zdg-media', [
 });
 //#endregion limpar
 
-//Envio automatico
+
+//Mensagem para usuarios que vão entrar no grupo
+client.on('group_join', (notification) => {
+
+  console.log('notificacao', notification);
+  notification.reply(`🏠 Olá, *seja bem vindo!* 🏠
+
+Grupo destinado a avisos e discussões de melhorias do Residencial Allure.
+  
+Digite *!regras* e fique por dentro das premissas desse grupo.`)
+});
+
+
+//Mensagem no console quando o projeto terminar de rodar e estiver pronto
+server.listen(port, function () {
+  console.log('Aplicação rodando na porta *: ' + port + ' . Acesse no link: http://localhost:' + port);
+});
+
+
+// ..:: Envio automatico, através de comandos ::..
 client.on('message', async msg => {
 
   //Váriaveis globais
@@ -274,13 +293,8 @@ client.on('message', async msg => {
     msg.reply("pong")
   }
 
-  if (msg.body === '!pdf') {
-    const indic = MessageMedia.fromFilePath('./indice.pdf');
-    msg.reply(msg.from, indic, { caption: 'Comunidade ZDG 2.0' });
-  }
-
   if (msg.body === '!img') {
-    msg.reply("*CAMBUHY A MELHOR EMPRESA PARA SE TRABALHAR NESSA PORRA* ⏱️");
+    msg.reply("*CAMBUHY A MELHOR EMPRESA PARA SE TRABALHAR* ⏱️");
     const foto = MessageMedia.fromFilePath('./foto.jpeg');
     client.sendMessage(msg.from, foto)
     delay(3000).then(async function () {
@@ -293,7 +307,6 @@ client.on('message', async msg => {
       }
     });
   }
-
 
   if (msg.body === '!regras') {
 
@@ -317,21 +330,38 @@ No caso de infração a pessoa será imediatamente banida no grupo.`);
     }
   }
 
-});
 
-//Mensagem para usuarios que vão entrar no grupo
-client.on('group_join', (notification) => {
+  if (msg.body === '!estacao_california') {
 
-  console.log('notificacao', notification);
-  notification.reply(`🏠 Olá, *seja bem vindo!* 🏠
+    const ontem = new Date();
+    ontem.setDate(ontem.getDate() - 1);
 
-Grupo destinado a avisos e discussões de melhorias do Residencial Allure.
-  
-Digite *!regras* e fique por dentro das premissas desse grupo.`)
-});
+    const dia = ontem.getDate().toString().padStart(2, '0');
+    const mes = (ontem.getMonth() + 1).toString().padStart(2, '0'); // Meses começam de 0
+    const ano = ontem.getFullYear();
+
+    msg.reply(`*Data: ${dia}/${mes}/${ano}*
+
+Temperatura Máxima (°c):  ${gerarNumeroAleatorio()}
+Temperatura Mínima (°c):  ${gerarNumeroAleatorio()}
+Umidade Máxima (%):  ${gerarNumeroAleatorio()}
+Umidade Mínima (%):  ${gerarNumeroAleatorio()}
+Chuva Diária (mm):  ${gerarNumeroAleatorio()}
+Chuva Mensal (mm):  ${gerarNumeroAleatorio()}
+Evapotranspiração (mm):  ${gerarNumeroAleatorio()}`);
+  }
+
+  function gerarNumeroAleatorio() {
+    // Gera a parte inteira entre 0 e 30
+    let parteInteira = Math.floor(Math.random() * 31);
+
+    // Gera a parte decimal entre 0 e 9
+    let parteDecimal = Math.floor(Math.random() * 10);
+
+    // Formata o número no formato desejado
+    return `${parteInteira},${parteDecimal}`;
+  }
 
 
-//Mensagem no console quando o projeto terminar de rodar e estiver pronto
-server.listen(port, function () {
-  console.log('Aplicação rodando na porta *: ' + port + ' . Acesse no link: http://localhost:' + port);
+  //FIM
 });
