@@ -198,13 +198,13 @@ app.post('/zdg-media', [
   const caption = req.body.caption;
   const fileUrl = req.body.file;
 
-  let mimetype;
-  const attachment = await axios.get(fileUrl, {
-    responseType: 'arraybuffer'
-  }).then(response => {
-    mimetype = response.headers['content-type'];
-    return response.data.toString('base64');
-  });
+  let mimetype = 'image/png';
+  // const attachment = await axios.get(fileUrl, {
+  //   responseType: 'arraybuffer'
+  // }).then(response => {
+  //   mimetype = response.headers['content-type'];
+  //   return response.data.toString('base64');
+  // });
   // attachment no lugar do fileUrl
   const media = new MessageMedia(mimetype, fileUrl, 'Media');
 
