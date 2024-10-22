@@ -1,3 +1,2 @@
-2024/10/21-23:14:13.717 fac Reusing MANIFEST C:\Users\veron\Repositorios\wpp-api\.wwebjs_auth\session-bot-zdg\Default\Session Storage/MANIFEST-000001
-2024/10/21-23:14:13.717 fac Recovering log #3
-2024/10/21-23:14:13.717 fac Reusing old log C:\Users\veron\Repositorios\wpp-api\.wwebjs_auth\session-bot-zdg\Default\Session Storage/000003.log 
+2024/10/22-10:40:10.709 4038 Creating DB C:\Users\veron\Repositorios\wpp-api\.wwebjs_auth\session-bot-zdg\Default\Session Storage since it was missing.
+2024/10/22-10:40:10.734 4038 Reusing MANIFEST C:\Users\veron\Repositorios\wpp-api\.wwebjs_auth\session-bot-zdg\Default\Session Storage/MANIFEST-000001
