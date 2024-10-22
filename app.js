@@ -198,7 +198,7 @@ app.post('/zdg-media', [
   const caption = req.body.caption;
   const fileUrl = req.body.file;
 
-console.log(fileUrl);
+  console.log(fileUrl);
 
   let mimetype = 'image/png';
   // const attachment = await axios.get(fileUrl, {
@@ -209,7 +209,7 @@ console.log(fileUrl);
   // });
   // attachment no lugar do fileUrl
   const media = new MessageMedia(mimetype, fileUrl, 'Media');
-console.log(media);
+  console.log(media);
   if (numberDDI !== "55") {
     const numberZDG = number + "@c.us";
     client.sendMessage(numberZDG, media, { caption: caption }).then(response => {
@@ -312,7 +312,7 @@ client.on('message', async msg => {
 
   if (msg.body === '!regras') {
 
-    if (chat.isGroup) {
+   
       msg.reply(`Olá *${nomeContato}*
 
 Quando se vive em condomínio, é essencial aplicarmos a política da boa vizinhança. Para isso, algumas vezes se faz necessário ceder e *sempre* respeitar nossos vizinhos e os direitos de cada um.
@@ -327,9 +327,6 @@ Esse grupo tem o intuito de melhorar o convívio entre os moradores, ajudar e se
 ❌ Assuntos, vídeos e imagens não relacionados ao condomínio.
         
 No caso de infração a pessoa será imediatamente banida no grupo.`);
-    } else {
-      msg.reply('Esse comando só pode ser usado em grupo!');
-    }
   }
 
 
@@ -350,8 +347,9 @@ Umidade Máxima (%):  ${gerarNumeroAleatorio()}
 Umidade Mínima (%):  ${gerarNumeroAleatorio()}
 Chuva Diária (mm):  ${gerarNumeroAleatorio()}
 Chuva Mensal (mm):  ${gerarNumeroAleatorio()}
-Evapotranspiração (mm):  ${gerarNumeroAleatorio()}`);
-  }
+Evapotranspiração (mm):  ${gerarNumeroAleatorio()}
+
+*Os valores estão parcialmente desregulado devido aos fortes ventos causados pelo furacão Milton, mas deverá se normalizar em breve.*`);}
 
   function gerarNumeroAleatorio() {
     // Gera a parte inteira entre 0 e 30
