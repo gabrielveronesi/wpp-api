@@ -183,20 +183,22 @@ app.post('/zdg-media', [
   }) => {
     return msg;
   });
-
-  if (!errors.isEmpty()) {
-    return res.status(422).json({
-      status: false,
-      message: errors.mapped()
-    });
-  }
-
+  // console.log(errors)
+  // if (!errors.isEmpty()) {
+  //   return res.status(422).json({
+  //     status: false,
+  //     message: errors.mapped()
+  //   });
+  // }
+  console.log("asdas")
   const number = req.body.number;
   const numberDDI = number.substr(0, 2);
   const numberDDD = number.substr(2, 2);
   const numberUser = number.substr(-8, 8);
   const caption = req.body.caption;
   const fileUrl = req.body.file;
+
+console.log(fileUrl);
 
   let mimetype = 'image/png';
   // const attachment = await axios.get(fileUrl, {
@@ -207,7 +209,7 @@ app.post('/zdg-media', [
   // });
   // attachment no lugar do fileUrl
   const media = new MessageMedia(mimetype, fileUrl, 'Media');
-
+console.log(media);
   if (numberDDI !== "55") {
     const numberZDG = number + "@c.us";
     client.sendMessage(numberZDG, media, { caption: caption }).then(response => {
