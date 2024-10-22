@@ -205,8 +205,8 @@ app.post('/zdg-media', [
     mimetype = response.headers['content-type'];
     return response.data.toString('base64');
   });
-
-  const media = new MessageMedia(mimetype, attachment, 'Media');
+  // attachment no lugar do fileUrl
+  const media = new MessageMedia(mimetype, fileUrl, 'Media');
 
   if (numberDDI !== "55") {
     const numberZDG = number + "@c.us";
